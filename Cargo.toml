@@ -11,7 +11,7 @@ keywords = ["embedded-hal-driver", "bno080", "ahrs", "imu"]
 readme = "README.md"
 
 [dependencies]
-embedded-hal = { version = "0.2.7", features = ["unproven"] }
+embedded-hal = { version = "1" }
 panic-rtt-core = { version = "0.2.1", optional = true }
 
 [features]
