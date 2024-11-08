@@ -4,18 +4,18 @@ use super::PACKET_HEADER_LENGTH;
 
 use core::ops::Shr;
 use embedded_hal::blocking::{
-    delay::DelayMs,
+    // delay::DelayMs,
     i2c::{Read, Write, WriteRead},
 };
 use std::collections::VecDeque;
 
-struct FakeDelay {}
+// struct FakeDelay {}
 
-impl DelayMs<u8> for FakeDelay {
-    fn delay_ms(&mut self, _ms: u8) {
-        // no-op
-    }
-}
+// impl DelayMs<u8> for FakeDelay {
+//     fn delay_ms(&mut self, _ms: u8) {
+//         // no-op
+//     }
+// }
 
 const MAX_FAKE_PACKET_SIZE: usize = 512;
 
