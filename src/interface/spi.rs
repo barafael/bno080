@@ -173,11 +173,11 @@ where
     ) -> Result<usize, Self::SensorError> {
         // select the sensor
         self.csn.set_low().map_err(Error::Pin)?;
-        let rc = self.spi.write(&send_buf).map_err(Error::Comm);
+        let rc = self.spi.write(send_buf).map_err(Error::Comm);
         self.csn.set_high().map_err(Error::Pin)?;
-        if rc.is_err() {
+        if let Err(e) = rc {
             //release the sensor
-            return Err(rc.unwrap_err());
+            return Err(e);
         }
         #[cfg(feature = "rttdebug")]
         rprintln!("sent {}", send_buf.len());
@@ -225,8 +225,8 @@ where
         let rc = self.spi.write(packet).map_err(Error::Comm);
         self.csn.set_high().map_err(Error::Pin)?;
 
-        if rc.is_err() {
-            return Err(rc.unwrap_err());
+        if let Err(e) = rc {
+            return Err(e);
         }
 
         Ok(())

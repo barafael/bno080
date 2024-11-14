@@ -165,7 +165,7 @@ where
     /// if there was no packet to read.
     pub fn eat_one_message(&mut self, delay: &mut impl DelayNs) -> usize {
         let res = self.receive_packet_with_timeout(delay, 150);
-        return if let Ok(received_len) = res {
+        if let Ok(received_len) = res {
             #[cfg(feature = "rttdebug")]
             rprintln!("e1 {}", received_len);
             received_len
@@ -173,7 +173,7 @@ where
             #[cfg(feature = "rttdebug")]
             rprintln!("e1 err {:?}", res);
             0
-        };
+        }
     }
 
     fn handle_advertise_response(&mut self, received_len: usize) {
